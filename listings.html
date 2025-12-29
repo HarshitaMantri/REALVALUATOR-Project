@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property Listings - RealValuator</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-image: url("ai-generative-3d-modern-luxury-real-estate-house-photo.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px; 
+            background: rgba(13, 27, 42, 0.88);
+            color: white;
+            height: 100vh;
+            padding: 25px 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo-img {
+            height: 110px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 25px;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 12px 5px;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .sidebar a:hover {
+            background: #1b263b;
+            border-radius: 6px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 260px;
+            padding: 40px;
+            width: calc(100% - 260px);
+            color: white;
+            text-shadow: 0px 0px 8px black;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+        }
+
+        /* FILTERS */
+        .filters {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .filters h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .filter-item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-item label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .filter-item select,
+        .filter-item input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+
+        .filter-btn {
+            background: #1b263b;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .filter-btn:hover {
+            background: #2a3d5f;
+        }
+
+        /* LISTINGS GRID */
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .listing-card {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            color: #000;
+        }
+
+        .listing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .listing-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .listing-info {
+            padding: 20px;
+        }
+
+        .listing-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+
+        .listing-location {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .listing-details {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .listing-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .listing-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .listing-btn {
+            background: #1b263b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .listing-btn:hover {
+            background: #2a3d5f;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .badge-new {
+            background: #28a745;
+            color: white;
+        }
+
+        .badge-hot {
+            background: #dc3545;
+            color: white;
+        }
+
+        .badge-sale {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .listing-card.hidden {
+            display: none;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 20px;
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR WITH LOGO -->
+<div class="sidebar">
+    <img src="RealValuator.png" alt="RealValuator Logo" class="logo-img">
+
+    <a href="http://127.0.0.1:5000/">🏠 Home</a>
+    <a href="http://127.0.0.1:5000/app.html">📊 Price Predictor</a>
+    <a href="http://127.0.0.1:5000/listings.html">🏘 Listings</a>
+    <a href="http://127.0.0.1:5000/contact.html">📞 Contact</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <div class="page-header">
+        <h1>🏘 Property Listings</h1>
+        <p>Discover Premium Properties in Bangalore</p>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filters">
+        <h3>🔍 Filter Properties</h3>
+        <div class="filter-group">
+            <div class="filter-item">
+                <label>Location</label>
+                <select id="filter-location">
+                    <option value="all">All Locations</option>
+                    <option value="Electronic City">Electronic City</option>
+                    <option value="Rajaji Nagar">Rajaji Nagar</option>
+                    <option value="Whitefield">Whitefield</option>
+                    <option value="Koramangala">Koramangala</option>
+                    <option value="Indiranagar">Indiranagar</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>Property Type</label>
+                <select id="filter-type">
+                    <option value="all">All Types</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Villa">Villa</option>
+                    <option value="Plot">Plot</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>BHK</label>
+                <select id="filter-bhk">
+                    <option value="all">All</option>
+                    <option value="1">1 BHK</option>
+                    <option value="2">2 BHK</option>
+                    <option value="3">3 BHK</option>
+                    <option value="4">4 BHK</option>
+                    <option value="5">5+ BHK</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>Price Range (₹)</label>
+                <input type="text" id="filter-price" placeholder="Max Price (e.g., 10000000)">
+            </div>
+        </div>
+        <button class="filter-btn" id="apply-filters">Apply Filters</button>
+        <button class="filter-btn" id="clear-filters" style="margin-left: 10px; background: #6c757d;">Clear Filters</button>
+    </div>
+
+    <!-- LISTINGS GRID -->
+    <div class="listings-grid" id="listings-grid">
+        <!-- Listing 1 -->
+        <div class="listing-card" data-location="Electronic City" data-type="Apartment" data-bhk="2" data-price="8550000">
+            <img src="OIP.jpeg" alt="Luxury Apartment" class="listing-image" onerror="this.src='OIP (1).jpeg'">
+            <div class="listing-info">
+                <div class="listing-price">
+                    ₹ 85.50 Lakhs
+                    <span class="badge badge-new">New</span>
+                </div>
+                <div class="listing-location">📍 Electronic City, Bangalore</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">🛏️ 2 BHK</div>
+                    <div class="listing-detail-item">🚿 2 Bath</div>
+                    <div class="listing-detail-item">📏 1,200 sqft</div>
+                </div>
+                <div class="listing-description">
+                    Beautiful 2 BHK apartment in prime location. Spacious interiors with modern amenities. Close to IT hubs and schools.
+                </div>
+                <a href="http://127.0.0.1:5000/app.html" class="listing-btn">View Details & Estimate</a>
+            </div>
+        </div>
+
+        <!-- Listing 2 -->
+        <div class="listing-card" data-location="Rajaji Nagar" data-type="Villa" data-bhk="3" data-price="12000000">
+            <img src="OIP (1).jpeg" alt="Modern Villa" class="listing-image">
+            <div class="listing-info">
+                <div class="listing-price">
+                    ₹ 1.2 Crore
+                    <span class="badge badge-hot">Hot</span>
+                </div>
+                <div class="listing-location">📍 Rajaji Nagar, Bangalore</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">🛏️ 3 BHK</div>
+                    <div class="listing-detail-item">🚿 3 Bath</div>
+                    <div class="listing-detail-item">📏 2,100 sqft</div>
+                </div>
+                <div class="listing-description">
+                    Stunning 3 BHK independent villa with private garden. Premium finishes, excellent connectivity, and peaceful neighborhood.
+                </div>
+                <a href="http://127.0.0.1:5000/app.html" class="listing-btn">View Details & Estimate</a>
+            </div>
+        </div>
+
+        <!-- Listing 3 -->
+        <div class="listing-card" data-location="Koramangala" data-type="Apartment" data-bhk="2" data-price="6575000">
+            <img src="OIP.jpeg" alt="Spacious Apartment" class="listing-image" onerror="this.src='OIP (1).jpeg'">
+            <div class="listing-info">
+                <div class="listing-price">
+                    ₹ 65.75 Lakhs
+                    <span class="badge badge-sale">Great Deal</span>
+                </div>
+                <div class="listing-location">📍 Koramangala, Bangalore</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">🛏️ 2 BHK</div>
+                    <div class="listing-detail-item">🚿 2 Bath</div>
+                    <div class="listing-detail-item">📏 1,050 sqft</div>
+                </div>
+                <div class="listing-description">
+                    Well-maintained 2 BHK apartment in established locality. Good resale value, nearby markets and public transport.
+                </div>
+                <a href="http://127.0.0.1:5000/app.html" class="listing-btn">View Details & Estimate</a>
+            </div>
+        </div>
+
+        <!-- Listing 4 -->
+        <div class="listing-card" data-location="Indiranagar" data-type="Apartment" data-bhk="4" data-price="25000000">
+            <img src="OIP (1).jpeg" alt="Luxury Penthouse" class="listing-image">
+            <div class="listing-info">
+                <div class="listing-price">
+                    ₹ 2.5 Crore
+                    <span class="badge badge-hot">Premium</span>
+                </div>
+                <div class="listing-location">📍 Indiranagar, Bangalore</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">🛏️ 4 BHK</div>
+                    <div class="listing-detail-item">🚿 4 Bath</div>
+                    <div class="listing-detail-item">📏 3,500 sqft</div>
+                </div>
+                <div class="listing-description">
+                    Luxurious 4 BHK penthouse with panoramic city views. Top-floor unit with private terrace, high-end amenities included.
+                </div>
+                <a href="http://127.0.0.1:5000/app.html" class="listing-btn">View Details & Estimate</a>
+            </div>
+        </div>
+
+        <!-- Listing 5 -->
+        <div class="listing-card" data-location="Whitefield" data-type="Apartment" data-bhk="3" data-price="9520000">
+            <img src="OIP.jpeg" alt="Family Home" class="listing-image" onerror="this.src='OIP (1).jpeg'">
+            <div class="listing-info">
+                <div class="listing-price">
+                    ₹ 95.20 Lakhs
+                </div>
+                <div class="listing-location">📍 Whitefield, Bangalore</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">🛏️ 3 BHK</div>
+                    <div class="listing-detail-item">🚿 2 Bath</div>
+                    <div class="listing-detail-item">📏 1,650 sqft</div>
+                </div>
+                <div class="listing-description">
+                    Family-friendly 3 BHK apartment in gated community. Children's play area, security, and proximity to schools and hospitals.
+                </div>
+                <a href="http://127.0.0.1:5000/app.html" class="listing-btn">View Details & Estimate</a>
+            </div>
+        </div>
+
+        <!-- Listing 6 -->
+        <div class="listing-card" data-location="Electronic City" data-type="Apartment" data-bhk="2" data-price="5530000">
+            <img src="OIP (1).jpeg" alt="Investment Property" class="listing-image">
+            <div class="listing-info">
+                <div class="listing-price">
+                    ₹ 55.30 Lakhs
+                    <span class="badge badge-new">New Listing</span>
+                </div>
+                <div class="listing-location">📍 Electronic City Phase 2</div>
+                <div class="listing-details">
+                    <div class="listing-detail-item">🛏️ 2 BHK</div>
+                    <div class="listing-detail-item">🚿 2 Bath</div>
+                    <div class="listing-detail-item">📏 1,000 sqft</div>
+                </div>
+                <div class="listing-description">
+                    Investment opportunity! New construction 2 BHK with rental potential. Great for first-time buyers or investors.
+                </div>
+                <a href="http://127.0.0.1:5000/app.html" class="listing-btn">View Details & Estimate</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        const listingsGrid = document.getElementById('listings-grid');
+        const applyFiltersBtn = document.getElementById('apply-filters');
+        const clearFiltersBtn = document.getElementById('clear-filters');
+        const filterLocation = document.getElementById('filter-location');
+        const filterType = document.getElementById('filter-type');
+        const filterBhk = document.getElementById('filter-bhk');
+        const filterPrice = document.getElementById('filter-price');
+
+        function applyFilters() {
+            const location = filterLocation.value;
+            const type = filterType.value;
+            const bhk = filterBhk.value;
+            const maxPrice = filterPrice.value.trim();
+
+            const listings = document.querySelectorAll('.listing-card');
+            let visibleCount = 0;
+
+            listings.forEach(listing => {
+                const listingLocation = listing.getAttribute('data-location');
+                const listingType = listing.getAttribute('data-type');
+                const listingBhk = listing.getAttribute('data-bhk');
+                const listingPrice = parseFloat(listing.getAttribute('data-price'));
+
+                // Check location filter (supports partial matches)
+                const locationMatch = location === 'all' || 
+                    listingLocation.toLowerCase().includes(location.toLowerCase()) ||
+                    location.toLowerCase().includes(listingLocation.toLowerCase());
+                
+                // Check type filter
+                const typeMatch = type === 'all' || listingType === type;
+                
+                // Check BHK filter
+                const bhkMatch = bhk === 'all' || listingBhk === bhk;
+                
+                // Check price filter
+                let priceMatch = true;
+                if (maxPrice) {
+                    const maxPriceNum = parseFloat(maxPrice.replace(/[^0-9.]/g, ''));
+                    if (!isNaN(maxPriceNum)) {
+                        priceMatch = listingPrice <= maxPriceNum;
+                    }
+                }
+
+                // Show or hide listing based on filters
+                if (locationMatch && typeMatch && bhkMatch && priceMatch) {
+                    listing.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    listing.classList.add('hidden');
+                }
+            });
+
+            // Show "no results" message if needed
+            let noResultsMsg = document.querySelector('.no-results');
+            if (visibleCount === 0) {
+                if (!noResultsMsg) {
+                    noResultsMsg = document.createElement('div');
+                    noResultsMsg.className = 'no-results';
+                    noResultsMsg.textContent = 'No properties found matching your filters.';
+                    listingsGrid.appendChild(noResultsMsg);
+                }
+            } else {
+                if (noResultsMsg) {
+                    noResultsMsg.remove();
+                }
+            }
+        }
+
+        function clearFilters() {
+            filterLocation.value = 'all';
+            filterType.value = 'all';
+            filterBhk.value = 'all';
+            filterPrice.value = '';
+
+            const listings = document.querySelectorAll('.listing-card');
+            listings.forEach(listing => {
+                listing.classList.remove('hidden');
+            });
+
+            const noResultsMsg = document.querySelector('.no-results');
+            if (noResultsMsg) {
+                noResultsMsg.remove();
+            }
+        }
+
+        // Event listeners
+        applyFiltersBtn.addEventListener('click', applyFilters);
+        clearFiltersBtn.addEventListener('click', clearFilters);
+
+        // Allow Enter key to apply filters in price input
+        filterPrice.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                applyFilters();
+            }
+        });
+    </script>
+</div>
+
+</body>
+</html>
+

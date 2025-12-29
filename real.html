@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RealValuator - Smart Real Estate Insights</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-image: url("ai-generative-3d-modern-luxury-real-estate-house-photo.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px; 
+            background: rgba(13, 27, 42, 0.88);
+            color: white;
+            height: 100vh;
+            padding: 25px 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            backdrop-filter: blur(5px);
+        }
+
+        /* LOGO */
+        .logo-img {
+            height: 110px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 25px;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 12px 5px;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .sidebar a:hover {
+            background: #1b263b;
+            border-radius: 6px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 260px;
+            padding: 20px;
+            width: calc(100% - 260px);
+            color: white;
+            text-shadow: 0px 0px 8px black;
+        }
+
+        .hero {
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* ✅ WHITE TEXT BUTTON */
+        .cta-btn {
+            background: #1b263b;
+            color: #ffffff; /* WHITE TEXT */
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .feature-card {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.87);
+            padding: 20px;
+            border-radius: 12px;
+            color: #000;
+            backdrop-filter: blur(4px);
+        }
+
+        .feature-card img {
+            width: 100%;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR WITH LOGO -->
+<div class="sidebar">
+    <img src="RealValuator.png" alt="RealValuator Logo" class="logo-img">
+
+    <a href="http://127.0.0.1:5000/">🏠 Home</a>
+    <a href="http://127.0.0.1:5000/app.html">📊 Price Predictor</a>
+    <a href="http://127.0.0.1:5000/listings.html">🏘 Listings</a>
+    <a href="http://127.0.0.1:5000/contact.html">📞 Contact</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+    <section class="hero">
+        <h1>Your Trusted Real Estate Intelligence</h1>
+        <p>AI-powered price predictions, market trends, and trusted insights  
+        to help you find your perfect home in seconds.</p>
+
+        <!-- BUTTON FIXED TO WHITE TEXT -->
+        <a href="http://127.0.0.1:5000/app.html" class="cta-btn">Estimate Property Price</a>
+    </section>
+
+    <section class="features">
+
+        <div class="feature-card">
+            <img src="OIP.jpeg" alt="Home 1" onerror="this.src='OIP (1).jpeg'">
+            <h3>Accurate Price Prediction</h3>
+            <p>Get AI-backed valuation for any home based on square feet, location, BHK, and amenities.</p>
+        </div>
+        <div class="feature-card">
+            <img src="OIP (1).jpeg" alt="Home 2">
+            <h3>Smart Investment Insights</h3>
+            <p>Make better property decisions with market trend analytics and real estate intelligence.</p>
+        </div>
+
+        <div class="feature-card">
+            <img src="olc3.jpg" alt="Home 3">
+            <h3>Reliable & Fast</h3>
+            <p>Instant predictions in seconds, backed by data from real Bangalore housing markets.</p>
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>

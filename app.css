@@ -1,0 +1,98 @@
+ @import url("https://fonts.googleapis.com/css?family=Roboto:300");
+
+/* Background Image */
+.img {
+  background-image: url("ai-generative-3d-modern-luxury-real-estate-house-photo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(12px);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+
+/* Radio Button Group */
+.switch-field {
+	display: flex;
+	margin-bottom: 36px;
+}
+
+.switch-field input {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+}
+
+.switch-field label {
+	background-color: #e4e4e4;
+	color: rgba(0, 0, 0, 0.6);
+	font-size: 14px;
+	padding: 8px 16px;
+	margin-right: -1px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	transition: all 0.2s;
+}
+
+.switch-field label:hover {
+	cursor: pointer;
+}
+
+.switch-field input:checked + label {
+	background-color: #a5dc86;
+}
+
+/* Form Section */
+.form {
+	max-width: 270px;
+	font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
+	margin: 8px auto;
+	padding-left: 16px;
+}
+
+h2 {
+	font-size: 18px;
+	margin-bottom: 8px;
+}
+
+/* Input Fields */
+.area, .location {
+  font-family: "Roboto", sans-serif;
+  outline: none;
+  background: #f2f2f2;
+  width: 76%;
+  border: 0;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Buttons */
+.submit {
+  background: #a5dc86;
+  width: 76%;
+  border: none;
+  margin-top: 20px;
+  font-size: 15px;
+  height: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Result Box */
+.result {
+	background: #dcd686;
+	width: 76%;
+	height: 35px;
+	margin-top: 20px;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 16px;
+}

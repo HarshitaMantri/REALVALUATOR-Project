@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us - RealValuator</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-image: url("ai-generative-3d-modern-luxury-real-estate-house-photo.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px; 
+            background: rgba(13, 27, 42, 0.88);
+            color: white;
+            height: 100vh;
+            padding: 25px 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo-img {
+            height: 110px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 25px;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 12px 5px;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .sidebar a:hover {
+            background: #1b263b;
+            border-radius: 6px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 260px;
+            padding: 40px;
+            width: calc(100% - 260px);
+            color: white;
+            text-shadow: 0px 0px 8px black;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info h2 {
+            margin-top: 0;
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .info-icon {
+            font-size: 24px;
+            min-width: 30px;
+        }
+
+        .info-content h3 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+        }
+
+        .info-content p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .info-content a {
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .info-content a:hover {
+            border-bottom-color: white;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .social-links h3 {
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            text-decoration: none;
+            color: white;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-form h2 {
+            margin-top: 0;
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .submit-btn {
+            background: #1b263b;
+            color: white;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #2a3d5f;
+        }
+
+        .office-hours {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .office-hours h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .office-hours p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+
+        @media (max-width: 968px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR WITH LOGO -->
+<div class="sidebar">
+    <img src="RealValuator.png" alt="RealValuator Logo" class="logo-img">
+
+    <a href="http://127.0.0.1:5000/">🏠 Home</a>
+    <a href="http://127.0.0.1:5000/app.html">📊 Price Predictor</a>
+    <a href="http://127.0.0.1:5000/listings.html">🏘 Listings</a>
+    <a href="http://127.0.0.1:5000/contact.html">📞 Contact</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <div class="page-header">
+        <h1>📞 Contact Us</h1>
+        <p>Get in Touch - We're Here to Help You Find Your Dream Home</p>
+    </div>
+
+    <div class="contact-container">
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+            
+            <div class="info-item">
+                <div class="info-icon">📧</div>
+                <div class="info-content">
+                    <h3>Email Us</h3>
+                    <p><a href="mailto:info@realvaluator.com">info@realvaluator.com</a></p>
+                    <p><a href="mailto:support@realvaluator.com">support@realvaluator.com</a></p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">📱</div>
+                <div class="info-content">
+                    <h3>Call Us</h3>
+                    <p><a href="tel:+918012345678">+91 80 1234 5678</a></p>
+                    <p><a href="tel:+919876543210">+91 98 7654 3210</a></p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div class="info-content">
+                    <h3>Visit Us</h3>
+                    <p>RealValuator Office<br>
+                    123 Real Estate Hub<br>
+                    MG Road, Bangalore - 560001<br>
+                    Karnataka, India</p>
+                </div>
+            </div>
+
+            <div class="office-hours">
+                <h3>Office Hours</h3>
+                <p><strong>Monday - Friday:</strong> 9:00 AM - 7:00 PM</p>
+                <p><strong>Saturday:</strong> 10:00 AM - 5:00 PM</p>
+                <p><strong>Sunday:</strong> Closed</p>
+            </div>
+
+            <div class="social-links">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon" title="Facebook">📘</a>
+                    <a href="#" class="social-icon" title="Twitter">🐦</a>
+                    <a href="#" class="social-icon" title="Instagram">📷</a>
+                    <a href="#" class="social-icon" title="LinkedIn">💼</a>
+                    <a href="#" class="social-icon" title="YouTube">📺</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="property-inquiry">Property Inquiry</option>
+                        <option value="price-estimation">Price Estimation Help</option>
+                        <option value="general">General Question</option>
+                        <option value="partnership">Business Partnership</option>
+                        <option value="support">Technical Support</option>
+                        <option value="feedback">Feedback</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Form submission handler
+    document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for contacting us! We will get back to you soon.');
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
+
