@@ -15,6 +15,7 @@ app = Flask(__name__)
 # API routes (must be defined before catch-all route)
 @app.route('/api/get_location_names', methods=['GET'])
 def get_location_names():
+   
     response = jsonify({
         'locations': util.get_location_names()
     })
