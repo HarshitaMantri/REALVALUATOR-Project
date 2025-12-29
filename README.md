@@ -1,53 +1,65 @@
 # RealValuator - Smart Real Estate Price Predictor
+# RealValuator 🏠  
+### Machine Learning–Based Real Estate Price Prediction System
 
-## Why Do I Need to Run the Server?
+RealValuator is a full-stack machine learning web application that predicts real estate property prices based on features such as location, area, number of bedrooms, and amenities. The system provides fast and reliable price estimates to help buyers, sellers, and investors make data-driven decisions.
 
-Your RealValuator application requires a **Flask web server** to run because:
+---
 
-1. **API Endpoints**: The price prediction feature uses API calls (`/api/predict_home_price`) that need the Flask backend
-2. **Location Data**: The app fetches location names from the server (`/api/get_location_names`)
-3. **File Serving**: The server serves all HTML, CSS, JS, and image files
+## 🚀 Features
+- Predicts property prices using ML regression models  
+- User-friendly web interface  
+- Real-time price estimation  
+- End-to-end ML workflow (data preprocessing → model training → prediction)  
+- Deployed on cloud platform  
 
-## How to Start the Server
+---
 
-### Option 1: Double-click the startup script (Easiest!)
-- **Windows**: Double-click `start_server.bat`
-- **PowerShell**: Double-click `start_server.ps1` (or right-click → Run with PowerShell)
+## 🛠 Tech Stack
+- **Programming Language:** Python  
+- **Machine Learning:** Linear Regression  
+- **Web Framework:** Flask  
+- **Frontend:** HTML, CSS  
+- **Libraries:** Pandas, NumPy, Scikit-learn  
+- **Deployment:** Heroku / Render  
+- **Version Control:** Git & GitHub  
 
-### Option 2: Run from Command Line
+---
+
+## 📁 Project Structure
+RealValuator/
+│── app.py
+│── requirements.txt
+│── Procfile
+│── runtime.txt
+│── static/
+│── templates/
+│── README.md
+│── .gitignore
+
+
+---
+
+## ▶️ How to Run Locally
 ```bash
-cd server
-python server.py
-```
+pip install -r requirements.txt
+python app.py
 
-### Option 3: Run from Project Root
-```bash
-python server/server.py
-```
+## 🌐 Live Demo
 
-## After Starting the Server
+(Add deployed link here after deployment)
 
-Once the server is running, you'll see:
-```
-* Running on http://127.0.0.1:5000
-```
+📌 Future Enhancements
 
-Then open your browser and go to:
-- **Homepage**: http://127.0.0.1:5000/
-- **Price Predictor**: http://127.0.0.1:5000/app.html
-- **Listings**: http://127.0.0.1:5000/listings.html
-- **Contact**: http://127.0.0.1:5000/contact.html
+Support for multiple cities
 
-## Note
+Advanced ML models
 
-You **cannot** just double-click the HTML files to open them because:
-- The navigation links point to `http://127.0.0.1:5000/...`
-- The price prediction requires API calls to the server
-- Without the server running, these features won't work
+Database integration
 
-The server must be running for the application to work properly!
+User authentication
 
-## Stopping the Server
+👩‍💻 Author
 
-Press `Ctrl+C` in the terminal window where the server is running.
+Harshita Mantri
 
